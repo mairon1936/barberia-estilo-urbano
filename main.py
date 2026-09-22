@@ -21,6 +21,10 @@ cliente_frecuente = True
 precio_con_descuento = precio_corte - (precio_corte * descuento_porcentage / 100)
 
 def generar_bienvenida(nombre_negocio, precio_corte, cliente_frecuente):
+    if precio_corte <= 0:
+        return "Precio inválido"
+
+
     if cliente_frecuente:
         precio_con_descuento = precio_corte - (precio_corte * 15 / 100)
         return (
@@ -31,8 +35,8 @@ def generar_bienvenida(nombre_negocio, precio_corte, cliente_frecuente):
 
     return f"¡Bienvenido a {nombre_negocio}! Tu corte cuesta ${precio_corte:.2f}, sin descuento"
 
-
 print(generar_bienvenida(nombre_negocio, precio_corte, cliente_frecuente))
 
 print(generar_bienvenida("Estilo	Urbano",	350,	True))
 print(generar_bienvenida("Estilo	Urbano",	350,	False))
+print(generar_bienvenida("Estilo Urbano", 0, True))
