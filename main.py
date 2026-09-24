@@ -10,11 +10,24 @@ es_cliente = True
 nombre_negocio = "Estilo Urbano"
 precio_corte = 350
 descuento_porcentage = 15
-cliente_frecuente = True
-
-def generar_bienvenida(nombre_negocio, precio_corte, cliente_frecuente):
+cliente_frecuente = False
+primera_visita = False
+def generar_bienvenida(
+    nombre_negocio,
+    precio_corte,
+    cliente_frecuente,
+    primera_visita 
+):
     if precio_corte <= 0:
         return "Precio inválido"
+
+    if primera_visita:
+        precio_con_descuento = precio_corte - (precio_corte * 20 / 100)
+        return (
+            f"¡Bienvenido a {nombre_negocio}! "
+            f"Tu corte cuesta ${precio_con_descuento:.2f} "
+            "con tu descuento especial de primera visita."
+        )
 
     if cliente_frecuente:
         precio_con_descuento = precio_corte - (precio_corte * 15 / 100)
@@ -35,4 +48,4 @@ def generar_recibo(nombre_negocio, nombre_cliente, mensaje_Bienvenida):
     )
 
 
-print(generar_recibo(nombre_negocio, "Carlos", generar_bienvenida(nombre_negocio, precio_corte, True)))
+print(generar_recibo(nombre_negocio, "Carlos", generar_bienvenida(nombre_negocio, precio_corte, cliente_frecuente, primera_visita)))
